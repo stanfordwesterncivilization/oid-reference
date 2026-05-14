@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: oid-reference
+    runtime: docker
+    plan: starter          # $7/month — always-on, 512MB RAM
+    healthCheckPath: /health
+
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DH_PATH
+        value: /data/oid-cache.db
+
+    # Persistent disk keeps the SQLite cache across deploys
+    # Requires Starter plan or above ($7/mo includes 1GB disk)
+    disk:
+      name: oid-cache
+      mountPath: /data
+      sizeGB: 1
