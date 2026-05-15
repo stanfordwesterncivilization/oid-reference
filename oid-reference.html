@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OID Reference â Paessler</title>
+<title>OID Reference — Paessler</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -26,7 +26,7 @@
 html, body { height: 100%; overflow: hidden; }
 body { font-family: 'Roboto', Arial, sans-serif; font-weight: 300; background: var(--white); color: var(--text); display: flex; flex-direction: column; }
 
-/* ââ TOP NAV ââ */
+/* ── TOP NAV ── */
 .topnav {
   height: var(--nav-h);
   background: var(--navy);
@@ -80,10 +80,10 @@ body { font-family: 'Roboto', Arial, sans-serif; font-weight: 300; background: v
 .nav-tab:hover { color: var(--white); background: rgba(255,255,255,0.08); }
 .nav-tab.active { color: var(--cyan); background: rgba(0,174,239,0.12); }
 
-/* ââ LAYOUT ââ */
+/* ── LAYOUT ── */
 .app-body { display: flex; flex: 1; overflow: hidden; }
 
-/* ââ SIDEBAR ââ */
+/* ── SIDEBAR ── */
 .sidebar {
   width: var(--sidebar-w);
   min-width: var(--sidebar-w);
@@ -134,12 +134,12 @@ body { font-family: 'Roboto', Arial, sans-serif; font-weight: 300; background: v
 .tree-children { display: none; }
 .tree-children.open { display: block; }
 
-/* ââ MAIN CONTENT ââ */
+/* ── MAIN CONTENT ── */
 .main { flex: 1; overflow-y: auto; display: flex; flex-direction: column; }
 .main::-webkit-scrollbar { width: 6px; }
 .main::-webkit-scrollbar-thumb { background: var(--grey-mid); border-radius: 3px; }
 
-/* ââ VIEWS ââ */
+/* ── VIEWS ── */
 .view { display: none; flex-direction: column; flex: 1; }
 .view.active { display: flex; }
 
@@ -427,7 +427,7 @@ body { font-family: 'Roboto', Arial, sans-serif; font-weight: 300; background: v
 </head>
 <body>
 
-<!-- ââ TOP NAV ââ -->
+<!-- ── TOP NAV ── -->
 <nav class="topnav">
   
   
@@ -435,21 +435,21 @@ body { font-family: 'Roboto', Arial, sans-serif; font-weight: 300; background: v
 
   <div class="search-bar-wrap">
     <svg class="search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-    <input type="text" id="navSearch" placeholder="Search OIDs, names, descriptionsâ¦" oninput="handleNavSearch(this.value)" onkeydown="if(event.key==='Enter')doSearch()">
-    <button class="search-clear" id="navSearchClear" onclick="clearNavSearch()">â</button>
+    <input type="text" id="navSearch" placeholder="Search OIDs, names, descriptions…" oninput="handleNavSearch(this.value)" onkeydown="if(event.key==='Enter')doSearch()">
+    <button class="search-clear" id="navSearchClear" onclick="clearNavSearch()">✕</button>
   </div>
 
   <div class="nav-tabs">
     <button class="nav-tab active" id="tab-explorer" onclick="showView('home')">Explorer</button>
     <button class="nav-tab" id="tab-tools" onclick="showView('tools')">Tools</button>
   </div>
-  <span id="serverBadge" style="font-size:11px;color:#f59e0b;white-space:nowrap;margin-left:8px" title="Run node server.js for live data">â Demo data only</span>
+  <span id="serverBadge" style="font-size:11px;color:#f59e0b;white-space:nowrap;margin-left:8px" title="Run node server.js for live data">● Demo data only</span>
 </nav>
 
-<!-- ââ APP BODY ââ -->
+<!-- ── APP BODY ── -->
 <div class="app-body">
 
-  <!-- ââ SIDEBAR TREE ââ -->
+  <!-- ── SIDEBAR TREE ── -->
   <aside class="sidebar">
     <div class="sidebar-header">
       <span>OID Tree</span>
@@ -457,14 +457,14 @@ body { font-family: 'Roboto', Arial, sans-serif; font-weight: 300; background: v
     <div class="sidebar-tree" id="sidebarTree"></div>
   </aside>
 
-  <!-- ââ MAIN CONTENT ââ -->
+  <!-- ── MAIN CONTENT ── -->
   <main class="main" id="mainContent">
 
     <!-- HOME VIEW -->
     <div class="view active" id="view-home">
       <div class="home-hero">
         <h1>Global <span>OID</span> Reference</h1>
-        <p>Decode certificates, look up SNMP OIDs, and explore the full Object Identifier tree â with plain-language explanations for everyone.</p>
+        <p>Decode certificates, look up SNMP OIDs, and explore the full Object Identifier tree — with plain-language explanations for everyone.</p>
         <div class="hero-search-wrap">
           <svg class="hero-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
           <input type="text" id="heroSearch" placeholder="Try: 1.3.6.1.2.1.1.1  or  sysDescr  or  commonName" onkeydown="if(event.key==='Enter')doHeroSearch()">
@@ -479,28 +479,28 @@ body { font-family: 'Roboto', Arial, sans-serif; font-weight: 300; background: v
       </div>
       <div class="home-cards">
         <div class="home-card" onclick="showView('tools');switchToolTab('cert')">
-          <div class="home-card-icon">ð</div>
+          <div class="home-card-icon">🔐</div>
           <h3>Certificate Decoder</h3>
           <p>Paste any X.509 PEM certificate and instantly decode every OID inside it with plain-English explanations.</p>
-          <div class="card-action">Open tool â</div>
+          <div class="card-action">Open tool →</div>
         </div>
         <div class="home-card" onclick="showView('tools');switchToolTab('snmp')">
-          <div class="home-card-icon">ð¡</div>
+          <div class="home-card-icon">📡</div>
           <h3>SNMP OID Lookup</h3>
           <p>Enter an SNMP OID to see the MIB name, data type, RFC reference, and what it actually monitors.</p>
-          <div class="card-action">Open tool â</div>
+          <div class="card-action">Open tool →</div>
         </div>
         <div class="home-card" onclick="showView('tools');switchToolTab('format')">
-          <div class="home-card-icon">ð</div>
+          <div class="home-card-icon">📋</div>
           <h3>Format Converter</h3>
           <p>Convert any OID between dot notation, ASN.1, IRI, DER hex, and BER-encoded bytes in one click.</p>
-          <div class="card-action">Open tool â</div>
+          <div class="card-action">Open tool →</div>
         </div>
         <div class="home-card" onclick="selectOID('1')">
-          <div class="home-card-icon">ð²</div>
+          <div class="home-card-icon">🌲</div>
           <h3>Browse the Tree</h3>
-          <p>Navigate 1.2 million OID nodes in a collapsible tree â from ISO root down to individual vendor leaves.</p>
-          <div class="card-action">Start at root â</div>
+          <p>Navigate 1.2 million OID nodes in a collapsible tree — from ISO root down to individual vendor leaves.</p>
+          <div class="card-action">Start at root →</div>
         </div>
       </div>
     </div>
@@ -524,14 +524,14 @@ body { font-family: 'Roboto', Arial, sans-serif; font-weight: 300; background: v
         <h2>OID Tools</h2>
         <p class="tools-sub">Decode, convert, and look up OIDs without needing to know the notation in advance.</p>
         <div class="tool-tabs">
-          <button class="tool-tab active" id="ttab-cert" onclick="switchToolTab('cert')">ð Certificate Decoder</button>
-          <button class="tool-tab" id="ttab-snmp" onclick="switchToolTab('snmp')">ð¡ SNMP OID Lookup</button>
-          <button class="tool-tab" id="ttab-format" onclick="switchToolTab('format')">ð Format Converter</button>
+          <button class="tool-tab active" id="ttab-cert" onclick="switchToolTab('cert')">🔐 Certificate Decoder</button>
+          <button class="tool-tab" id="ttab-snmp" onclick="switchToolTab('snmp')">📡 SNMP OID Lookup</button>
+          <button class="tool-tab" id="ttab-format" onclick="switchToolTab('format')">📋 Format Converter</button>
         </div>
 
         <!-- CERT DECODER -->
         <div class="tool-panel active" id="tpanel-cert">
-          <p class="tool-hint">Paste a PEM certificate below (the <code>-----BEGIN CERTIFICATE-----</code> block). All decoding happens in your browser â nothing is sent to a server.</p>
+          <p class="tool-hint">Paste a PEM certificate below (the <code>-----BEGIN CERTIFICATE-----</code> block). All decoding happens in your browser — nothing is sent to a server.</p>
           <div class="tool-input-area">
             <textarea id="certInput" placeholder="-----BEGIN CERTIFICATE-----&#10;MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA...&#10;-----END CERTIFICATE-----"></textarea>
           </div>
@@ -576,16 +576,16 @@ body { font-family: 'Roboto', Arial, sans-serif; font-weight: 300; background: v
 </div>
 
 <script>
-// ââ HELPERS ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// ── HELPERS ──────────────────────────────────────────────────────────────────
 function aliasStr(info) {
   return (info && info.aliases && info.aliases.length) ? info.aliases.join(', ') : '';
 }
 function aliasBadge(info) {
   if (!info || !info.aliases || !info.aliases.length) return '';
-  return ' <span style="color:var(--text-muted);font-weight:300">Â· ' + aliasStr(info) + '</span>';
+  return ' <span style="color:var(--text-muted);font-weight:300">· ' + aliasStr(info) + '</span>';
 }
 
-// ââ API âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// ── API ───────────────────────────────────────────────────────────────────────
 // Relative paths: works on localhost AND on Render without any config change
 const localCache = {};  // session-level memory cache
 
@@ -609,16 +609,16 @@ async function searchAPI(query) {
   return data ? data.results : [];
 }
 
-// ââ TREE STATE ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// ── TREE STATE ────────────────────────────────────────────────────────────────
 const treeState   = { expanded: new Set(), selected: null };
-const treeCache   = {};   // oid â children array
+const treeCache   = {};   // oid → children array
 const ROOT_NODES  = [
   { oid:'0', name:'itu-t',          count:10360  },
   { oid:'1', name:'iso',            count:992195 },
   { oid:'2', name:'joint-iso-itu-t',count:25835  },
 ];
 
-// ââ INIT ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// ── INIT ──────────────────────────────────────────────────────────────────────
 window.addEventListener('DOMContentLoaded', () => {
   renderTree();
   // Pre-load root node info silently
@@ -628,7 +628,7 @@ window.addEventListener('DOMContentLoaded', () => {
     if (data && data.ok === true) {
       const badge = document.getElementById('serverBadge');
       if (badge) {
-        badge.textContent = 'â Live data';
+        badge.textContent = '● Live data';
         badge.style.color = '#22c55e';
         badge.title = 'Connected to live OID backend';
       }
@@ -636,7 +636,7 @@ window.addEventListener('DOMContentLoaded', () => {
   }).catch(() => {});
 });
 
-// ââ TREE ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// ── TREE ──────────────────────────────────────────────────────────────────────
 function renderTree() {
   const container = document.getElementById('sidebarTree');
   container.innerHTML = '';
@@ -656,7 +656,7 @@ function buildTreeNode(oid, name, count, depth) {
   row.className = 'tree-row' + (isSelected ? ' selected' : '');
   row.style.paddingLeft = (12 + depth * 14) + 'px';
   row.innerHTML =
-    '<span class="tree-toggle' + (hasChildren ? (isExpanded ? ' open' : '') : ' leaf') + '">' + (hasChildren ? 'â¶' : '') + '</span>' +
+    '<span class="tree-toggle' + (hasChildren ? (isExpanded ? ' open' : '') : ' leaf') + '">' + (hasChildren ? '▶' : '') + '</span>' +
     '<span class="tree-oid">' + oid + '</span>' +
     '<span class="tree-label">' + (name || oid) + '</span>' +
     (count > 0 && !isExpanded ? '<span class="tree-count">' + count.toLocaleString() + '</span>' : '');
@@ -694,7 +694,7 @@ async function handleTreeClick(oid, count) {
   renderTree();
 }
 
-// ââ VIEW MANAGEMENT âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// ── VIEW MANAGEMENT ───────────────────────────────────────────────────────────
 function showView(name) {
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
   document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
@@ -703,7 +703,7 @@ function showView(name) {
   document.getElementById('mainContent').scrollTop = 0;
 }
 
-// ââ OID SELECT + DETAIL âââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// ── OID SELECT + DETAIL ───────────────────────────────────────────────────────
 async function selectOID(oid) {
   treeState.selected = oid;
   // Expand ancestors
@@ -712,7 +712,7 @@ async function selectOID(oid) {
   renderTree();
   showView('detail');
   document.getElementById('detailContent').innerHTML =
-    '<div style="padding:40px;color:var(--text-muted);font-size:13px">Loading ' + oid + 'â¦</div>';
+    '<div style="padding:40px;color:var(--text-muted);font-size:13px">Loading ' + oid + '…</div>';
 
   const info = await lookupOID(oid);
   renderDetail(oid, info);
@@ -721,7 +721,7 @@ async function selectOID(oid) {
 function renderDetail(oid, info) {
   const el = document.getElementById('detailContent');
   if (!info) {
-    el.innerHTML = '<div class="no-results"><div class="nr-icon">â ï¸</div><p>Could not load OID <strong>' + oid + '</strong>.<br>It may not exist in the database, or oidref.com may be temporarily unavailable.</p></div>';
+    el.innerHTML = '<div class="no-results"><div class="nr-icon">⚠️</div><p>Could not load OID <strong>' + oid + '</strong>.<br>It may not exist in the database, or oidref.com may be temporarily unavailable.</p></div>';
     return;
   }
 
@@ -773,7 +773,7 @@ function renderDetail(oid, info) {
 
     ${(info.plain || info.desc) ? `
     <div class="plain-lang-box">
-      <div class="pll-title">ð¡ Plain Language</div>
+      <div class="pll-title">💡 Plain Language</div>
       <p>${info.plain || info.desc}</p>
     </div>` : ''}
 
@@ -781,7 +781,7 @@ function renderDetail(oid, info) {
       <div class="detail-section-title">Technical Details</div>
       <div class="meta-grid">
         <span class="meta-label">Dot Notation</span><span class="meta-value"><code>${oid}</code></span>
-        <span class="meta-label">Name</span><span class="meta-value">${info.name || 'â'}</span>
+        <span class="meta-label">Name</span><span class="meta-value">${info.name || '—'}</span>
         ${aliasStr(info) ? '<span class="meta-label">Aliases</span><span class="meta-value">' + aliasStr(info) + '</span>' : ''}
         ${info.desc ? '<span class="meta-label">Description</span><span class="meta-value">' + info.desc + '</span>' : ''}
         ${info.org ? '<span class="meta-label">Authority</span><span class="meta-value">' + info.org + '</span>' : ''}
@@ -804,7 +804,7 @@ function renderDetail(oid, info) {
   `;
 }
 
-// ââ SEARCH ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// ── SEARCH ────────────────────────────────────────────────────────────────────
 let searchTimer = null;
 
 function handleNavSearch(val) {
@@ -812,7 +812,7 @@ function handleNavSearch(val) {
   clearTimeout(searchTimer);
   if (val.length >= 2) {
     showView('search');
-    document.getElementById('searchResultsList').innerHTML = '<div style="padding:24px;color:var(--text-muted);font-size:13px">Searchingâ¦</div>';
+    document.getElementById('searchResultsList').innerHTML = '<div style="padding:24px;color:var(--text-muted);font-size:13px">Searching…</div>';
     searchTimer = setTimeout(() => renderSearchResults(val), 300);
   } else if (val.length === 0) {
     showView('home');
@@ -842,14 +842,14 @@ function doHeroSearch() {
 async function renderSearchResults(query) {
   const list  = document.getElementById('searchResultsList');
   const title = document.getElementById('searchResultsTitle');
-  list.innerHTML = '<div style="padding:24px;color:var(--text-muted);font-size:13px">Searchingâ¦</div>';
+  list.innerHTML = '<div style="padding:24px;color:var(--text-muted);font-size:13px">Searching…</div>';
 
   const results = await searchAPI(query);
 
   title.innerHTML = '<strong>' + results.length + '</strong> results for "<strong>' + query + '</strong>"';
 
   if (!results.length) {
-    list.innerHTML = '<div class="no-results"><div class="nr-icon">ð</div><p>No results found for "<strong>' + query + '</strong>".</p></div>';
+    list.innerHTML = '<div class="no-results"><div class="nr-icon">🔍</div><p>No results found for "<strong>' + query + '</strong>".</p></div>';
     return;
   }
 
@@ -865,7 +865,7 @@ async function renderSearchResults(query) {
   }).join('');
 }
 
-// ââ TOOL TABS âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// ── TOOL TABS ─────────────────────────────────────────────────────────────────
 function switchToolTab(tab) {
   document.querySelectorAll('.tool-tab').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.tool-panel').forEach(p => p.classList.remove('active'));
@@ -874,7 +874,7 @@ function switchToolTab(tab) {
   showView('tools');
 }
 
-// ââ CERTIFICATE DECODER âââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// ── CERTIFICATE DECODER ───────────────────────────────────────────────────────
 const SAMPLE_CERT = `-----BEGIN CERTIFICATE-----
 MIIFazCCA1OgAwIBAgIRAIIQz7DSQONZRGPgu2OCiwAwDQYJKoZIhvcNAQELBQAw
 TzELMAkGA1UEBhMCVVMxKTAnBgNVBAoTIEludGVybmV0IFNlY3VyaXR5IFJlc2Vh
@@ -914,7 +914,7 @@ async function decodeCert() {
   const resultEl = document.getElementById('certResult');
   if (!pem) { resultEl.innerHTML = '<div class="error-box">Paste a PEM certificate first.</div>'; return; }
 
-  resultEl.innerHTML = '<div style="padding:16px;color:var(--text-muted);font-size:13px">Parsingâ¦</div>';
+  resultEl.innerHTML = '<div style="padding:16px;color:var(--text-muted);font-size:13px">Parsing…</div>';
 
   try {
     const base64 = pem.replace(/-----[^-]+-----/g, '').replace(/\s/g, '');
@@ -936,13 +936,13 @@ async function decodeCert() {
         '<div class="orr-info">' +
           (info
             ? '<div class="orr-name">' + (info.name || oid) + aliasBadge(info) + '</div><div class="orr-plain">' + (info.plain || info.desc || '') + '</div>'
-            : '<div class="orr-unknown">OID not resolved â may not be in oidref.com yet</div>'
+            : '<div class="orr-unknown">OID not resolved — may not be in oidref.com yet</div>'
           ) +
         '</div>' +
       '</div>'
     ).join('');
 
-    resultEl.innerHTML = '<div class="decode-result"><div class="decode-result-title">Found ' + unique.length + ' OIDs â click any to explore</div>' + rows + '</div>';
+    resultEl.innerHTML = '<div class="decode-result"><div class="decode-result-title">Found ' + unique.length + ' OIDs — click any to explore</div>' + rows + '</div>';
   } catch(e) {
     resultEl.innerHTML = '<div class="error-box">Parse error: ' + e.message + '</div>';
   }
@@ -977,18 +977,18 @@ function extractOIDs(b, o, end, out, depth) {
   }
 }
 
-// ââ SNMP LOOKUP âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// ── SNMP LOOKUP ───────────────────────────────────────────────────────────────
 function snmpQuick(oid) { document.getElementById('snmpInput').value = oid; lookupSNMP(); }
 
 async function lookupSNMP() {
   const raw = document.getElementById('snmpInput').value.trim();
   const oid = raw.replace(/\.0$/, '');
   const el  = document.getElementById('snmpResult');
-  el.innerHTML = '<div style="padding:16px;color:var(--text-muted);font-size:13px">Looking upâ¦</div>';
+  el.innerHTML = '<div style="padding:16px;color:var(--text-muted);font-size:13px">Looking up…</div>';
 
   const info = await lookupOID(oid);
   if (!info) {
-    el.innerHTML = '<div class="no-results"><div class="nr-icon">ð¡</div><p>OID <strong>' + raw + '</strong> not found.</p></div>';
+    el.innerHTML = '<div class="no-results"><div class="nr-icon">📡</div><p>OID <strong>' + raw + '</strong> not found.</p></div>';
     return;
   }
 
@@ -1002,7 +1002,7 @@ async function lookupSNMP() {
       '</div>' +
       '<div class="snmp-card-body">' +
         '<div class="snmp-grid">' +
-          '<span class="snmp-label">Full Name</span><span class="snmp-value">' + (info.name || 'â') + aliasBadge(info) + '</span>' +
+          '<span class="snmp-label">Full Name</span><span class="snmp-value">' + (info.name || '—') + aliasBadge(info) + '</span>' +
           (info.mib ? '<span class="snmp-label">MIB</span><span class="snmp-value"><code style="background:var(--grey);padding:1px 5px;border-radius:3px">' + info.mib + '</code></span>' : '') +
           (info.syntax ? '<span class="snmp-label">Syntax</span><span class="snmp-value"><code style="background:var(--grey);padding:1px 5px;border-radius:3px">' + info.syntax + '</code></span>' : '') +
           (info.access ? '<span class="snmp-label">Access</span><span class="snmp-value"><code style="background:var(--grey);padding:1px 5px;border-radius:3px">' + info.access + '</code></span>' : '') +
@@ -1010,17 +1010,17 @@ async function lookupSNMP() {
           '<span class="snmp-label">DER Hex</span><span class="snmp-value" style="font-family:monospace;font-size:11px">' + (info.derHex || oidToDerHex(oid)) + '</span>' +
         '</div>' +
         '<div class="snmp-plain-box">' + (info.plain || info.desc || 'No description available.') + '</div>' +
-        '<div style="margin-top:12px"><button class="btn-primary" style="font-size:12px;padding:7px 14px" onclick="selectOID(\'' + oid + '\')">Explore in Tree â</button></div>' +
+        '<div style="margin-top:12px"><button class="btn-primary" style="font-size:12px;padding:7px 14px" onclick="selectOID(\'' + oid + '\')">Explore in Tree →</button></div>' +
       '</div>' +
     '</div>';
 }
 
-// ââ FORMAT CONVERTER ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// ── FORMAT CONVERTER ──────────────────────────────────────────────────────────
 async function convertFormat() {
   const oid = document.getElementById('fmtInput').value.trim();
   const el  = document.getElementById('fmtResult');
   if (!oid || !/^[\d.]+$/.test(oid)) { el.innerHTML = '<div class="error-box">Enter a valid OID in dot notation.</div>'; return; }
-  el.innerHTML = '<div style="padding:16px;color:var(--text-muted);font-size:13px">Convertingâ¦</div>';
+  el.innerHTML = '<div style="padding:16px;color:var(--text-muted);font-size:13px">Converting…</div>';
 
   const info    = await lookupOID(oid);
   const name    = info ? info.name : oid.split('.').pop();
@@ -1030,7 +1030,7 @@ async function convertFormat() {
   const hexArr  = derHex.split(' ').map(h => parseInt(h,16));
   const cArray  = hexArr.map(b => '0x' + b.toString(16).padStart(2,'0')).join(', ');
 
-  el.innerHTML = '<div class="decode-result"><div class="decode-result-title">' + oid + (info ? 'â *' + name : '') + '</div>' +
+  el.innerHTML = '<div class="decode-result"><div class="decode-result-title">' + oid + (info ? '— *' + name : '') + '</div>' +
     '<div class="format-cards" style="margin-top:12px">' +
     fmtCard('Dot Notation', oid) +
     fmtCard('DER Hex', derHex) +
@@ -1041,7 +1041,7 @@ async function convertFormat() {
     '</div></div>';
 }
 
-// ââ OID ENCODING ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// ── OID ENCODING ──────────────────────────────────────────────────────────────
 function oidToDerHex(oid) {
   const parts = oid.split('.').map(Number);
   if (parts.length < 2) return '06 00';
@@ -1054,7 +1054,7 @@ function oidToDerHex(oid) {
   return '06 ' + enc.length.toString(16).padStart(2,'0') + ' ' + enc.map(b => b.toString(16).padStart(2,'0')).join(' ');
 }
 
-// ââ SHARED UTILS ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// ── SHARED UTILS ──────────────────────────────────────────────────────────────
 function fmtCard(label, value) {
   const safe = value.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
   return '<div class="format-card"><div class="format-card-label">' + label + '</div>' +
