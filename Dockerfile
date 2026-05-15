@@ -7,7 +7,7 @@ WORKDIR /app
 
 # Install dependencies first (layer caching — only re-runs when package.json changes)
 COPY package*.json ./
-RUN npm ci --only=production
+RUN npm install --only=production
 
 # Copy application files
 COPY server.js ./
