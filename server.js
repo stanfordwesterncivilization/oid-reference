@@ -7,7 +7,7 @@ const path     = require('path');
 const fs       = require('fs');
 const { parse } = require('node-html-parser');
 
-// ── SQLite setup ─────────────────────────────────────────────────────────────
+// ââ SQLite setup âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 let db = null;
 const DB_PATH = process.env.DB_PATH || path.join(__dirname, 'oid-cache.db');
 try {
@@ -28,7 +28,7 @@ try {
     );
     CREATE INDEX IF NOT EXISTS idx_oid_name ON oids(name);
   `);
-  console.log(`[cache] SQLite ready → ${DB_PATH}`);
+  console.log(`[cache] SQLite ready â ${DB_PATH}`);
 } catch (e) {
   console.warn(`[cache] SQLite unavailable (${e.message}), using memory cache`);
 }
@@ -75,7 +75,7 @@ function setCachedSearch(query, results) {
   }
 }
 
-// ── ENTERPRISE OID DATABASE (IANA) ───────────────────────────────────────────
+// ââ ENTERPRISE OID DATABASE (IANA) âââââââââââââââââââââââââââââââââââââââââââ
 const ENTERPRISE_NAMES = {
   2:     'IBM Corporation',
   9:     'Cisco Systems',
@@ -156,7 +156,7 @@ const ENTERPRISE_NAMES = {
   43356: 'Powervar',
 };
 
-// ── HTTP FETCHER ─────────────────────────────────────────────────────────────
+// ââ HTTP FETCHER âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 function fetchURL(targetUrl, redirects = 0) {
   return new Promise((resolve, reject) => {
     if (redirects > 5) return reject(new Error('Too many redirects'));
@@ -184,7 +184,7 @@ function fetchURL(targetUrl, redirects = 0) {
   });
 }
 
-// ── HTML PARSER ──────────────────────────────────────────────────────────────
+// ââ HTML PARSER ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 function parseOIDPage(body, oid) {
   const root = parse(body);
   const result = {
@@ -205,7 +205,7 @@ function parseOIDPage(body, oid) {
   // Grab all text from the page in a structured way
   const allText = root.text;
 
-  // Node name — look for "node name" label then next content
+  // Node name â look for "node name" label then next content
   const bodyText = body;
 
   // Names: look for the list items after "node name"
@@ -252,15 +252,16 @@ function parseOIDPage(body, oid) {
   if (iriM) result.iri = iriM[1];
 
   // Children table — parse every link to oidref.com/X.X.X that isn't the current OID
-  const childPattern = new RegExp(`href="https?://oidref\\.com/(${oid.replace(/\./g,'\\.')}\\.[\\d.]+)"[^>]*>[\\d.]+</a>([^<]*)`, 'g');
+  // Matches both absolute (https://oidref.com/X.X.X) and relative (/X.X.X) OID hrefs,
+  // with or without a title attribute.
   const childrenSeen = new Set();
-  const childMatches = bodyText.matchAll(/href="https?:\/\/oidref\.com\/([\d.]+)"[^>]*title="([^"]*)"[^>]*>[\d.]+<\/a>/g);
+  const childMatches = bodyText.matchAll(/href="(?:https?:\/\/oidref\.com)?\/([\.\d]+(?:\.[\d]+)+)"(?:[^>]*title="([^"]*)")?[^>]*>[\d.]+<\/a>/g);
   for (const m of childMatches) {
     const childOid = m[1];
     if (childOid === oid || childrenSeen.has(childOid)) continue;
     if (!childOid.startsWith(oid + '.')) continue;
     childrenSeen.add(childOid);
-    const titleParts = m[2].split(' ');
+    const titleParts = (m[2] || '').split(' ');
     const childName = titleParts.slice(1).join(' ').replace(/\s+/g, ' ').trim();
     result.children.push({ oid: childOid, name: childName || childOid });
   }
@@ -282,7 +283,7 @@ function parseOIDPage(body, oid) {
   return result;
 }
 
-// ── OID LOOKUP ────────────────────────────────────────────────────────────────
+// ââ OID LOOKUP ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 async function lookupOID(oid) {
   // 1. Check cache
   const cached = getCachedOID(oid);
@@ -324,7 +325,7 @@ async function lookupOID(oid) {
   return parsed;
 }
 
-// ── SEARCH ────────────────────────────────────────────────────────────────────
+// ââ SEARCH ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 async function searchOIDs(query) {
   const q = query.toLowerCase().trim();
 
@@ -346,7 +347,7 @@ async function searchOIDs(query) {
     } catch (e) { /* ignore */ }
   }
 
-  // 2. Enterprise name search (vendor lookup — Meraki, Fortinet, etc.)
+  // 2. Enterprise name search (vendor lookup â Meraki, Fortinet, etc.)
   for (const [num, name] of Object.entries(ENTERPRISE_NAMES)) {
     if (name.toLowerCase().includes(q)) {
       const oid = `1.3.6.1.4.1.${num}`;
@@ -354,7 +355,7 @@ async function searchOIDs(query) {
         results.push({
           oid,
           name,
-          desc: `Private enterprise OID arc — IANA Enterprise Number ${num}`,
+          desc: `Private enterprise OID arc â IANA Enterprise Number ${num}`,
           plain: `Vendor-specific SNMP OID arc for ${name}.`,
           tags: ['snmp', 'enterprise'],
         });
@@ -406,7 +407,7 @@ async function searchOIDs(query) {
   return final;
 }
 
-// ── OID ENCODING UTILS ────────────────────────────────────────────────────────
+// ââ OID ENCODING UTILS ââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 function oidToDerHex(oid) {
   const parts = oid.split('.').map(Number);
   if (parts.length < 2) return '06 00';
@@ -425,7 +426,7 @@ function oidToIri(oid) {
   return '/' + oid.split('.').join('/');
 }
 
-// ── EXPRESS APP ───────────────────────────────────────────────────────────────
+// ââ EXPRESS APP âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 const app = express();
 app.disable('x-powered-by');
 
@@ -491,9 +492,9 @@ app.get('/api/stats', (req, res) => {
   res.json({ oidsCached: oidCount, searchesCached: searchCount, storage: db ? 'sqlite' : 'memory' });
 });
 
-// ── START ─────────────────────────────────────────────────────────────────────
+// ââ START âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, '0.0.0.0', () => {
-  console.log(`\n✅  OID Reference running on port ${PORT}`);
+  console.log(`\nâ  OID Reference running on port ${PORT}`);
   console.log(`   Local: http://localhost:${PORT}\n`);
 });
