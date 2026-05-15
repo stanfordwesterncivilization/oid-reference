@@ -756,7 +756,7 @@ function renderDetail(oid, info) {
       </div>
     </div>` : '';
 
-  const derHey = info.derHex || oidToDerHex(oid);
+  const derHex = info.derHex || oidToDerHex(oid);
   const iriPath = info.iriPath || ('/' + oid.split('.').join('/'));
   const asn1 = info.name ? info.name + ' OBJECT IDENTIFIER ::= { ' + parts.slice(0,-1).join('.') + ' ' + parts[parts.length-1] + ' }' : '';
 
