@@ -623,6 +623,17 @@ window.addEventListener('DOMContentLoaded', () => {
   renderTree();
   // Pre-load root node info silently
   ROOT_NODES.forEach(n => lookupOID(n.oid));
+  // Check if live backend is reachable and update badge
+  fetch('/health').then(r => r.json()).then(data => {
+    if (data && data.status === 'ok') {
+      const badge = document.getElementById('serverBadge');
+      if (badge) {
+        badge.textContent = '● Live data';
+        badge.style.color = '#22c55e';
+        badge.title = 'Connected to live OID backend';
+      }
+    }
+  }).catch(() => {});
 });
 
 // ── TREE ──────────────────────────────────────────────────────────────────────
