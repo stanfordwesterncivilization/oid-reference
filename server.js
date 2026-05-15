@@ -305,8 +305,9 @@ function parseOIDPage(body, oid) {
   const mibBlock = bodyText.match(/Information by mibdepot[\s\S]{0,2000}?::=\s*\{[^}]+\}/i);
   const mibText = mibBlock ? mibBlock[0] : bodyText;
   // Capture compound types like "OBJECT IDENTIFIER", "INTEGER (0..100)", "OCTET STRING (SIZE...)"
-  const syntaxM = mibText.match(/\bSYNTAX\s+([\w\-]+(?:\s+[\w\-]+)?(?:\s*\([^)]+\))?)/i);
-  if (syntaxM) result.mibSyntax = syntaxM[1].trim();
+  // Use [ \t] not \s to avoid crossing newlines into the next keyword
+  const syntaxM = mibText.match(/\bSYNTAX[ \t]+([\w\-]+(?:[ \t]+[\w\-]+)?(?:[ \t]*\([^)]+\))?)/i);
+  if (syntaxM) result.mibSyntax = syntaxM[1].split(/[\r\n]/)[0].trim();
   const accessM = mibText.match(/\bACCESS\s+([\w\-]+)/i);
   if (accessM) result.mibAccess = accessM[1].trim();
   const statusM = mibText.match(/\bSTATUS\s+([\w\-]+)/i);
