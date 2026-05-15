@@ -7,7 +7,7 @@ const path     = require('path');
 const fs       = require('fs');
 const { parse } = require('node-html-parser');
 
-// ââ SQLite setup âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// Ã¢ÂÂÃ¢ÂÂ SQLite setup Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
 let db = null;
 const DB_PATH = process.env.DB_PATH || path.join(__dirname, 'oid-cache.db');
 try {
@@ -28,7 +28,7 @@ try {
     );
     CREATE INDEX IF NOT EXISTS idx_oid_name ON oids(name);
   `);
-  console.log(`[cache] SQLite ready â ${DB_PATH}`);
+  console.log(`[cache] SQLite ready Ã¢ÂÂ ${DB_PATH}`);
 } catch (e) {
   console.warn(`[cache] SQLite unavailable (${e.message}), using memory cache`);
 }
@@ -75,7 +75,7 @@ function setCachedSearch(query, results) {
   }
 }
 
-// ââ ENTERPRISE OID DATABASE (IANA) âââââââââââââââââââââââââââââââââââââââââââ
+// Ã¢ÂÂÃ¢ÂÂ ENTERPRISE OID DATABASE (IANA) Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
 const ENTERPRISE_NAMES = {
   2:     'IBM Corporation',
   9:     'Cisco Systems',
@@ -156,7 +156,7 @@ const ENTERPRISE_NAMES = {
   43356: 'Powervar',
 };
 
-// ââ HTTP FETCHER âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// Ã¢ÂÂÃ¢ÂÂ HTTP FETCHER Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
 function fetchURL(targetUrl, redirects = 0) {
   return new Promise((resolve, reject) => {
     if (redirects > 5) return reject(new Error('Too many redirects'));
@@ -184,7 +184,7 @@ function fetchURL(targetUrl, redirects = 0) {
   });
 }
 
-// ââ HTML PARSER ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// Ã¢ÂÂÃ¢ÂÂ HTML PARSER Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
 function parseOIDPage(body, oid) {
   const root = parse(body);
   const result = {
@@ -200,12 +200,18 @@ function parseOIDPage(body, oid) {
     childCount: 0,
     tags: [],
     source: 'oidref.com',
+    mibVendor: null,
+    mibModule: null,
+    mibFile: null,
+    mibSyntax: null,
+    mibAccess: null,
+    mibStatus: null,
   };
 
   // Grab all text from the page in a structured way
   const allText = root.text;
 
-  // Node name â look for "node name" label then next content
+  // Node name Ã¢ÂÂ look for "node name" label then next content
   const bodyText = body;
 
   // Names: look for the list items after "node name"
@@ -251,7 +257,7 @@ function parseOIDPage(body, oid) {
   const iriM = bodyText.match(/iri oid[\s\S]{0,200}?<li>(\/[\w\/\-]+)<\/li>/i);
   if (iriM) result.iri = iriM[1];
 
-  // Children table — parse every link to oidref.com/X.X.X that isn't the current OID
+  // Children table â parse every link to oidref.com/X.X.X that isn't the current OID
   // Matches both absolute (https://oidref.com/X.X.X) and relative (/X.X.X) OID hrefs,
   // with or without a title attribute.
   const childrenSeen = new Set();
@@ -280,10 +286,34 @@ function parseOIDPage(body, oid) {
   if (oid.startsWith('2.5.4')) result.tags.push('ldap');
   if (oid.startsWith('1.3.6.1.4.1')) result.tags.push('enterprise');
 
+  // ── MIB metadata ─────────────────────────────────────────────────────────────────────────────
+  // Vendor (from "Information by oid_info" section)
+  const vendorM = bodyText.match(/Vendor:\s*([^\n<\[]{2,100})/i);
+  if (vendorM) result.mibVendor = vendorM[1].trim();
+
+  // Module name (prefer oid_info section, fall back to mibdepot description)
+  const moduleM = bodyText.match(/Information by oid_info[\s\S]{0,500}?Module:\s*([^\n<\[]{2,100})/i)
+    || bodyText.match(/Module:\s*([^\n<\[]{2,100})/i);
+  if (moduleM) result.mibModule = moduleM[1].trim();
+
+  // MIB file (from "Description by mibdepot" section)
+  const mibFileM = bodyText.match(/Parsed from file\s+([\w.\-]+\.(?:mib|txt))/i);
+  if (mibFileM) result.mibFile = mibFileM[1].trim();
+
+  // SYNTAX, ACCESS, STATUS from the MIB OBJECT-TYPE block
+  const mibBlock = bodyText.match(/Information by mibdepot[\s\S]{0,2000}?::=\s*\{[^}]+\}/i);
+  const mibText = mibBlock ? mibBlock[0] : bodyText;
+  const syntaxM = mibText.match(/\bSYNTAX\s+([\w\-]+(?:\s*\([^)]+\))?(?:\s+\([^)]+\))?)/i);
+  if (syntaxM) result.mibSyntax = syntaxM[1].trim();
+  const accessM = mibText.match(/\bACCESS\s+([\w\-]+)/i);
+  if (accessM) result.mibAccess = accessM[1].trim();
+  const statusM = mibText.match(/\bSTATUS\s+([\w\-]+)/i);
+  if (statusM) result.mibStatus = statusM[1].trim();
+
   return result;
 }
 
-// ââ OID LOOKUP ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// Ã¢ÂÂÃ¢ÂÂ OID LOOKUP Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
 async function lookupOID(oid) {
   // 1. Check cache
   const cached = getCachedOID(oid);
@@ -325,7 +355,7 @@ async function lookupOID(oid) {
   return parsed;
 }
 
-// ââ SEARCH ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// Ã¢ÂÂÃ¢ÂÂ SEARCH Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
 async function searchOIDs(query) {
   const q = query.toLowerCase().trim();
 
@@ -347,7 +377,7 @@ async function searchOIDs(query) {
     } catch (e) { /* ignore */ }
   }
 
-  // 2. Enterprise name search (vendor lookup â Meraki, Fortinet, etc.)
+  // 2. Enterprise name search (vendor lookup Ã¢ÂÂ Meraki, Fortinet, etc.)
   for (const [num, name] of Object.entries(ENTERPRISE_NAMES)) {
     if (name.toLowerCase().includes(q)) {
       const oid = `1.3.6.1.4.1.${num}`;
@@ -355,7 +385,7 @@ async function searchOIDs(query) {
         results.push({
           oid,
           name,
-          desc: `Private enterprise OID arc â IANA Enterprise Number ${num}`,
+          desc: `Private enterprise OID arc Ã¢ÂÂ IANA Enterprise Number ${num}`,
           plain: `Vendor-specific SNMP OID arc for ${name}.`,
           tags: ['snmp', 'enterprise'],
         });
@@ -407,7 +437,7 @@ async function searchOIDs(query) {
   return final;
 }
 
-// ââ OID ENCODING UTILS ââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// Ã¢ÂÂÃ¢ÂÂ OID ENCODING UTILS Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
 function oidToDerHex(oid) {
   const parts = oid.split('.').map(Number);
   if (parts.length < 2) return '06 00';
@@ -426,7 +456,7 @@ function oidToIri(oid) {
   return '/' + oid.split('.').join('/');
 }
 
-// ââ EXPRESS APP âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// Ã¢ÂÂÃ¢ÂÂ EXPRESS APP Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
 const app = express();
 app.disable('x-powered-by');
 
@@ -492,9 +522,9 @@ app.get('/api/stats', (req, res) => {
   res.json({ oidsCached: oidCount, searchesCached: searchCount, storage: db ? 'sqlite' : 'memory' });
 });
 
-// ââ START âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// Ã¢ÂÂÃ¢ÂÂ START Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, '0.0.0.0', () => {
-  console.log(`\nâ  OID Reference running on port ${PORT}`);
+  console.log(`\nÃ¢ÂÂ  OID Reference running on port ${PORT}`);
   console.log(`   Local: http://localhost:${PORT}\n`);
 });
