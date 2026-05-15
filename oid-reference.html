@@ -625,7 +625,7 @@ window.addEventListener('DOMContentLoaded', () => {
   ROOT_NODES.forEach(n => lookupOID(n.oid));
   // Check if live backend is reachable and update badge
   fetch('/health').then(r => r.json()).then(data => {
-    if (data && data.status === 'ok') {
+    if (data && data.ok === true) {
       const badge = document.getElementById('serverBadge');
       if (badge) {
         badge.textContent = '● Live data';
